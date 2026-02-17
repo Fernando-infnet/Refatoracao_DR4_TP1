@@ -91,3 +91,55 @@ class GildedRose {
 }
 
 ```
+
+3 - Implementação de Conjured e testes
+
+```
+...
+@Test
+    public void conjuredItemMultipleDays() {
+        Item[] items = new Item[] { new Item("Conjured Elixir", 3, 10) };
+        GildedRose app = new GildedRose(items);
+        
+        app.updateQuality();
+        assertEquals(2, items[0].sellIn);
+        assertEquals(8, items[0].quality);
+        
+        app.updateQuality();
+        assertEquals(1, items[0].sellIn);
+        assertEquals(6, items[0].quality);
+        
+        app.updateQuality();
+        assertEquals(0, items[0].sellIn);
+        assertEquals(4, items[0].quality);
+        
+        app.updateQuality();
+        assertEquals(-1, items[0].sellIn);
+        assertEquals(0, items[0].quality);
+        
+        app.updateQuality();
+        assertEquals(-2, items[0].sellIn);
+        assertEquals(0, items[0].quality);
+    }
+...
+```
+
+4 - Implementação dos outros testes para os métodos anteriores em GildedRoseTest.java
+
+Resultados finais:
+
+```
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.gildedrose.GildedRoseTest
+[INFO] Tests run: 17, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.027 s - in com.gildedrose.GildedRoseTest
+[INFO] Running com.gildedrose.ConjuredItemTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.003 s - in com.gildedrose.ConjuredItemTest
+[INFO] Running com.gildedrose.GildedRoseApprovalTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.445 s - in com.gildedrose.GildedRoseApprovalTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0
+```

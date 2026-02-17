@@ -10,7 +10,7 @@ There are two test cases here with different styles:
 I suggest choosing one style to develop and deleting the other.
 # Refatoracao_DR4_TP1
 
-1- Todos métodos sendo separados da lógica agrupada de cadeias de 'for'
+1 - Todos métodos sendo separados da lógica agrupada de cadeias de 'for'
 
 ```
 private void updateAgedBrie(Item item) {
@@ -52,4 +52,42 @@ private void updateAgedBrie(Item item) {
             decreaseQuality(item);
         }
     }
-``` 
+```
+
+2 - Refatoração Gilded Rose
+
+```
+
+class GildedRose {
+    Item[] items;
+    private final ItemUpdater agedBrieUpdater = new AgedBrieUpdater();
+    private final ItemUpdater sulfurasUpdater = new SulfurasUpdater();
+    private final ItemUpdater backstagePassUpdater = new BackstagePassUpdater();
+    private final ItemUpdater defaultUpdater = new DefaultUpdater();
+
+    public GildedRose(Item[] items) {
+        this.items = items;
+    }
+
+    // Separação de Quality e Items
+    public void updateQuality() {
+        for (int i = 0; i < items.length; i++) {
+            ItemUpdater updater = getUpdaterForItem(items[i]);
+            updater.update(items[i]);
+        }
+    }
+
+    private ItemUpdater getUpdaterForItem(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            return agedBrieUpdater;
+        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return sulfurasUpdater;
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            return backstagePassUpdater;
+        } else {
+            return defaultUpdater;
+        }
+    }
+}
+
+```

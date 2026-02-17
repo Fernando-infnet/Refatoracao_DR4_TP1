@@ -54,27 +54,22 @@ public class ConjuredItemTest {
         Item[] items = new Item[] { new Item("Conjured Elixir", 3, 10) };
         GildedRose app = new GildedRose(items);
         
-        // Day 1
         app.updateQuality();
         assertEquals(2, items[0].sellIn);
         assertEquals(8, items[0].quality);
         
-        // Day 2
         app.updateQuality();
         assertEquals(1, items[0].sellIn);
         assertEquals(6, items[0].quality);
         
-        // Day 3
         app.updateQuality();
         assertEquals(0, items[0].sellIn);
         assertEquals(4, items[0].quality);
         
-        // Day 4 
         app.updateQuality();
         assertEquals(-1, items[0].sellIn);
         assertEquals(0, items[0].quality);
         
-        // Day 5 
         app.updateQuality();
         assertEquals(-2, items[0].sellIn);
         assertEquals(0, items[0].quality);

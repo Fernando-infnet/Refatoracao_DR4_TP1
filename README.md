@@ -143,3 +143,36 @@ Resultados finais:
 [INFO] 
 [INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0
 ```
+
+5 - Perguntas e Respostas
+
+**Pergunta 1:** 
+
+A estrutura atual facilita a adição de novos tipos de item?
+Justifique com base no Princípio Aberto-Fechado.
+Resposta: Sim. Respeita o Princípio Aberto-Fechado:
+Aberta para extensão → novo tipo = nova classe que implementa ItemUpdater.
+Fechada para modificação → não é preciso alterar GildedRose, o loop ou a lógica de escolha do updater. 
+
+**Pergunta 2:** 
+
+A implementação dos ItemUpdater respeita o Princípio da Responsabilidade Única? Explique.
+Resposta: Sim.
+Cada classe tem uma única responsabilidade: implementar as regras de atualização de um tipo específico de item (ou família muito coesa).
+Exemplos:
+
+NormalItemUpdater → só itens comuns
+AgedBrieUpdater → só Aged Brie
+BackstagePassUpdater → só passes de show
+SulfurasUpdater → só itens lendários
+ConjuredUpdater → só itens conjurados
+
+Se a regra de um item mudar, só aquela classe é tocada → responsabilidade única preservada.
+
+**Pergunta 3:** 
+
+Alguma violação do Princípio de Substituição de Liskov pode ser identificada em sua hierarquia? Se sim, corrija-a.
+Resposta: Não.
+Todas as classes que implementam ItemUpdater são substituíveis entre si sem quebrar o programa, porque:
+
+Cumprem exatamente o mesmo contrato: void update(Item item), o cliente pode usar qualquer updater no lugar de outro e o comportamento esperado continua correto

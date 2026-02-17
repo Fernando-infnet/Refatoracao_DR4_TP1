@@ -69,12 +69,12 @@ public class ConjuredItemTest {
         assertEquals(0, items[0].sellIn);
         assertEquals(4, items[0].quality);
         
-        // Day 4 (after sellIn)
+        // Day 4 
         app.updateQuality();
         assertEquals(-1, items[0].sellIn);
         assertEquals(0, items[0].quality);
         
-        // Day 5 (should stay at 0)
+        // Day 5 
         app.updateQuality();
         assertEquals(-2, items[0].sellIn);
         assertEquals(0, items[0].quality);
